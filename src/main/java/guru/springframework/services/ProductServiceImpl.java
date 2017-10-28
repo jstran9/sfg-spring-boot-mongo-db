@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by jt on 1/10/17.
@@ -35,7 +36,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getById(String id) {
-        return productRepository.findOne(id);
+        Optional<Product> productOptional = productRepository.findById(id);
+        return productOptional.get();
     }
 
     @Override
@@ -46,8 +48,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(String id) {
-        productRepository.delete(id);
-
+        productRepository.deleteById(id);
     }
 
     @Override
